@@ -2,17 +2,13 @@ import React, { Component } from 'react';
 import {render} from 'react-dom';
 
 
-export default class SingleCarImage extends Component {
+export default function SingleCarImage(props) {
 
-	constructor(props) {
-    super(props);
-  };
 
-  render(){
 		return(
 			<div>
-		    <img src={this.props.image.imageUrl} alt=""/>
+		    <img src={props.image.imageUrl} alt={props.image.carName}/>
 		  </div>
 			)
-	}
+	
 }
