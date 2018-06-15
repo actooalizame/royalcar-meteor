@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import {render} from 'react-dom';
+import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
+import SingleCarImage from './SingleCarImage';
 
 export default class CreateCar extends Component {
 
@@ -7,38 +10,50 @@ export default class CreateCar extends Component {
     super(props);
   };
 
-  componentDidMount(){
-  	/*$.cloudinary.config({
-	  		cloud_name: 'gatosauriocloud9',
-	  		api_key: '949499676144738'
-			});*/
-			console.log(Cloudinary.collection.find().fetch())
-  }
 
   handleChange(e) {
+  	var carName = Session.get('carName');
     var files;
     files = e.currentTarget.files;
     return Cloudinary.upload(files, {
-      folder: "secret"
+      folder: carName
     }, function(err, res) {
       console.log("Upload Error:");
       console.log(err);
       console.log("Upload Result:");
-      return console.log(res);
+      var data = {
+      		imageUrl: res.secure_url,
+      		carName: Session.get('carName')
+      }
+      Meteor.call('insertCarImage',data)
+
+      return console.log(data);
     });
   }
 
-  getImages(){
-  	let images = Cloudinary.collection.find().fetch().map(x => x.secure_url);
-  	return images;
+  setTitle(){
+  	let carName = jQuery('.car-name').val();
+  	return Session.set('carName', carName)
   }
+
+  getImages(){
+
+  	return this.props.images.map((image) =>{
+      return <SingleCarImage key={image._id} image={image} />
+    });
+  }
+ 
 
   render() {
   	return(
   			<div>
   					<h3>Cloudinary Upload</h3><br/>
-  					<input type="file" className="file_bag" onChange={this.handleChange}/>
+  					<form>
+  						<input type="text" className="car-name" onBlur={this.setTitle} />
+  						<input type="file" className="file_bag" onChange={this.handleChange}/>
+  					</form>
   					{this.getImages()}
+  					
   			</div>
   		
   		)

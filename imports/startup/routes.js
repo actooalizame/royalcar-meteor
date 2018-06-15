@@ -5,6 +5,7 @@ import createBrowserHistory from 'history/createBrowserHistory';
 // route components
 import Home from '../ui/layouts/home';
 import CreateCar from '../ui/components/CreateCar';
+import CreateCarContainer from '../ui/containers/CreateCarContainer';
 /*import ListPageContainer from '../../ui/containers/ListPageContainer.js';
 import AuthPageSignIn from '../../ui/pages/AuthPageSignIn.js';
 import AuthPageJoin from '../../ui/pages/AuthPageJoin.js';
@@ -17,7 +18,7 @@ export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Switch>
       <Route exact path="/" component={Home}/>
-      <Route exact path="/subir-auto" component={CreateCar}/>
+      <Route exact path="/subir-auto" component={CreateCarContainer}/>
 
     </Switch>
   </Router>
