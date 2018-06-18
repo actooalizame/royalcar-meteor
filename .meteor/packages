@@ -21,3 +21,4 @@ lepozepo:cloudinary
 jquery
 session
 react-meteor-data
+kadira:flow-router
