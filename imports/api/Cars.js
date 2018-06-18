@@ -8,6 +8,9 @@ if (Meteor.isServer){
 	Meteor.publish('cars.all', () => {
 	  return Cars.find({},{sort:{createdAt:-1}})
 	});
+  Meteor.publish('cars.single', (slug) => {
+    return Cars.find({slug:slug}, {sort: {createdAt: -1}, limit: 1})
+  });
 }
 
 Meteor.methods({
