@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import SingleCarImage from './SingleCarImage';
 
+var slugify = require('slugify')
+
 export default class CreateCar extends Component {
 
 	constructor(props) {
@@ -37,20 +39,37 @@ export default class CreateCar extends Component {
   }
 
   getImages(){
-
   	return this.props.images.map((image) =>{
       return <SingleCarImage key={image._id} image={image} />
     });
   }
+  
+  insertNewCar(e){
+    e.preventDefault();
+    let carName = Session.get('carName'),
+        slug = slugify(carName,{
+        remove: /[$*_+~.()'"!\-:@]/g,
+        lower: true
+      })
+
+    let data = {
+      carName,
+      slug
+    }
+
+  Meteor.call('insertNewCar',data);
  
+  }
 
   render() {
   	return(
   			<div>
   					<h3>Cloudinary Upload</h3><br/>
-  					<form>
-  						<input type="text" className="car-name" onBlur={this.setTitle} />
+
+  					<form onSubmit={this.insertNewCar}>
+  						<input type="text" name="carName" className="car-name" onBlur={this.setTitle} />
   						<input type="file" className="file_bag" onChange={this.handleChange}/>
+              <button type="submit" className="waves-effect waves-light btn">Enviar Evaluación</button>
   					</form>
   					{this.getImages()}
   					

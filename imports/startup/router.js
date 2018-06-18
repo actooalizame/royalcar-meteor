@@ -3,13 +3,13 @@ import React from 'react';
 import { mount } from 'react-mounter';
 
 import MainLayout from '../ui/layouts/MainLayout';
-import Home from '../ui/layouts/home';
+import HomeContainer from '../ui/containers/HomeContainer';
 import CreateCarContainer from '../ui/containers/CreateCarContainer';
 
 FlowRouter.route('/', {
 	name: 'home',
 	action(){
-		mount(MainLayout, {content: <Home  />});
+		mount(MainLayout, {content: <HomeContainer  />});
 	}
 });
 

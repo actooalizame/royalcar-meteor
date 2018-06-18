@@ -8,6 +8,6 @@ export default createContainer(() => {
   const carName = Session.get('carName');
   const images = CarImages.find({carName:carName}).fetch();
   return {
-    images
+    images,
   };
 }, CreateCar);
