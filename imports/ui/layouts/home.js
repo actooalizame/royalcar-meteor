@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {render} from 'react-dom';
 
+
 export default class Home extends Component {
 	constructor(props) {
     super(props);
@@ -8,7 +9,10 @@ export default class Home extends Component {
 
   render() {
   	return(
-  		<h1>Hola</h1>
+  		<div>
+  			<h1>Hola</h1>
+  		</div>
+  		
   		)
   }
 
