@@ -4,9 +4,9 @@ import {CarImages}  from '../../api/CarImages';
 import SingleCar from '../components/SingleCar';
 
 export default createContainer((props) => {
-  Meteor.subscribe('images.all');
+  
   const carName = props.car.carName;
-  console.log(carName)
+ Meteor.subscribe('images.featured',carName);
   const images = CarImages.findOne({carName:carName});
   return {
   	carName,

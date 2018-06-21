@@ -8,6 +8,9 @@ if (Meteor.isServer){
 	Meteor.publish('images.all', () => {
 	  return CarImages.find({},{sort:{createdAt:-1}})
 	});
+  Meteor.publish('images.onlyOne', () => {
+    return CarImages.find({},{sort:{createdAt:1}, limit: 1})
+  });
   Meteor.publish('images.carDetails', (carName) => {
     return CarImages.find({carName},{sort:{createdAt:-1}})
   });

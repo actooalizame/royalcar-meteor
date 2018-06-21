@@ -8,7 +8,7 @@ export default createContainer((props) => {
   const handle = Meteor.subscribe('images.carDetails',carName);
   
   
-  const images = CarImages.find({carName}).fetch();
+  const images = CarImages.find({carName},{sort:{createdAt:1}}).fetch();
   console.log(images)
   return {
   	handleReady: handle.ready(),

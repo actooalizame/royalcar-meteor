@@ -14,12 +14,22 @@ export default class CarDetails extends Component {
   }*/
 
 
+
 getCar(){
 	return this.props.carData.map((car) =>{
 	  return (
-	  	<div key={car._id}>
+	  	<div key={car._id} className="container">
 	  		<h1>{car.carName}</h1>
-	  		<CarImagesContainer key={car._id} carName={car.carName} />
+	  		
+	  			<div className="col l6 m12">
+	  				<CarImagesContainer key={car._id} carName={car.carName} />
+	  			</div>
+	  			<div className="col l6 m12">
+	  				<h3>{car.slug}</h3>
+	  			</div>
+
+	  	
+	  		
 	  	</div>
 	  	)
 	});

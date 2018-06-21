@@ -14,5 +14,8 @@ body {
 		margin-left: 7%;
     margin-top: 2em;
 	}
+	.carousel {
+		height: 302px;
+	}
 }
 
